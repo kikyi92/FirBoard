@@ -18,7 +18,7 @@
 
  	<div class="container">
 	<h1>Hello world!</h1>
-	<P>The time on the server is ${serverTime}.</P>
+	<P>The Time on the server is ${serverTime}.</P>
 	<div>
       <table class="table table-bordered table-striped nanum">
         <thead>
