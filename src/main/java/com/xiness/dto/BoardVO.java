@@ -1,6 +1,6 @@
 package com.xiness.dto;
 
-public class MemberVO {
+public class BoardVO {
 	private Integer no;	 //글번호
 	private String cate; // 분류
 	private String title;// 제목
