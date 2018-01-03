@@ -6,7 +6,15 @@ public class BoardVO {
 	private String title;// 제목
 	private String content; // 내용
 	private String writer; //작성자
-	private Integer datetime; //입력날짜
+	private String datetime; //입력날짜
+	private Integer viewcnt; // 조회수
+	
+	public Integer getViewcnt() {
+		return viewcnt;
+	}
+	public void setViewcnt(Integer viewcnt) {
+		this.viewcnt = viewcnt;
+	}
 	private String option; //옵션
 	private String pubpriv; //공개여부
 	
@@ -40,10 +48,10 @@ public class BoardVO {
 	public void setWriter(String writer) {
 		this.writer = writer;
 	}
-	public Integer getDatetime() {
+	public String getDatetime() {
 		return datetime;
 	}
-	public void setDatetime(Integer datetime) {
+	public void setDatetime(String datetime) {
 		this.datetime = datetime;
 	}
 	public String getOption() {

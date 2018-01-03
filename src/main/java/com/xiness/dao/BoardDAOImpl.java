@@ -10,16 +10,12 @@ import com.xiness.dto.BoardVO;
 
 @Repository
 public class BoardDAOImpl implements BoardDAO{
-@Inject
+	@Inject
 	private SqlSession sqlSession;
-	
 	private static final String Namespace = "com.xiness.mapper.BoardMapper";
 
 	@Override
 	public List<BoardVO> selectBoard() throws Exception {
-		return null;
+		return sqlSession.selectList(Namespace+".selectBoard");
 	}
-	
-	
-	
 }

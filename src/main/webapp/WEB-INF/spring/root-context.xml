@@ -4,37 +4,39 @@
 	xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:jdbc="http://www.springframework.org/schema/jdbc"
 	xmlns:mybatis-spring="http://mybatis.org/schema/mybatis-spring"
-	xmlns:cache="http://www.springframework.org/schema/cache" xmlns:c="http://www.springframework.org/schema/c"
 	xsi:schemaLocation="http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-3.1.xsd
 		http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring-1.2.xsd
-		http://www.springframework.org/schema/cache http://www.springframework.org/schema/cache/spring-cache-3.1.xsd
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.1.xsd
 		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.1.xsd">
 
-	<!-- Root Context: defines shared resources visible to all other web components -->
-	<!-- MySQL dataSource -->
-	<bean id="dataSource"
-		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+	<!-- Root Context: defines shared resources visible to all other web components --><!-- 웹과 관련되지 않은 resource 설정 -->
+	<!-- MySQL dataSource --><!-- MySQL 연결을 담당한다. JDBC 커넥션을 처리하는 기능을 가지고 있기에 DB 와 연동하는 작업에 필요하다. -->
+	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<!-- <property name="driverClassName" value="com.mysql.cj.jdbc.Driver"></property> -->
 		<property name="driverClassName" value="net.sf.log4jdbc.sql.jdbcapi.DriverSpy"></property>
 		<property name="url"
-			value="jdbc:log4jdbc:mysql://127.0.0.1:3306/project?useSSL=false&amp;serverTimezone=UTC"></property>
+			value="jdbc:log4jdbc:mysql://127.0.0.1:3306/project?useSSL=false&amp;serverTimezone=UTC">
+		</property>
+			<!-- value="jdbc:mysql://127.0.0.1:3306/project?useSSL=false&amp;serverTimezone=UTC"> -->
 		<property name="username" value="root"></property>
 		<property name="password" value="1234"></property>
 	</bean>
 
-	<!-- mybatis SqlSessionFactoryBean -->
-	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
-		<property name="dataSource" ref="dataSource"></property>
-		<property name="configLocation" value="classpath:/mybatis-config.xml"></property>
-		<property name="mapperLocations" value="classpath:mappers/**/*Mapper.xml"></property>
+	 <!-- mybatis SqlSessionFactoryBean -->
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="dataSource"></property>
+        <property name="configLocation" value="classpath:/mybatis-config.xml"></property>
+        <property name="mapperLocations" value="classpath:mappers/**/*Mapper.xml"></property>
+    </bean>
+    
+    <!-- mybatis -->
+	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate" destroy-method="clearCache">
+	<constructor-arg name="sqlSessionFactory" ref="sqlSessionFactory"></constructor-arg>
 	</bean>
-
-	<!-- mybatis -->
-	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate"
-		destroy-method="clearCache">
-		<constructor-arg name="sqlSessionFactory" ref="sqlSessionFactory"></constructor-arg>
-	</bean>
-
-
+	
+	<!-- bean 등록 -->
+	<context:component-scan base-package="com.xiness"></context:component-scan>
+	<context:component-scan base-package="com.xiness.dao"></context:component-scan>
+	<context:component-scan base-package="com.xiness.service"></context:component-scan> 
 </beans>
