@@ -22,6 +22,11 @@
         SELECT * FROM boardtable
     </select>
     
+    <insert id="insertBoard" parameterType="BoardVO">
+    	INSERT INTO boardtable(datetime, cate, source, writer, title, content, pubpriv)
+    	VALUES (#{datetime}, #{cate}, #{source}, #{writer}, #{title}, #{content}, #{pubpriv})
+    </insert>
+    
 </mapper>
 
 

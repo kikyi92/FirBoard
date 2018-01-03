@@ -9,9 +9,11 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.google.gson.Gson;
 import com.xiness.dto.BoardVO;
 import com.xiness.service.BoardService;
 
@@ -25,7 +27,7 @@ public class HomeController {
 	@Inject
 	private BoardService service;
 	
-	@RequestMapping(value = "/", method = RequestMethod.GET)
+	@RequestMapping(value = "/")
 	public String home(Locale locale, Model model) throws Exception{
 		logger.info("home!");
 		
@@ -33,6 +35,36 @@ public class HomeController {
 		model.addAttribute("BoardList",BoardList);
 		
 		return "home";
+	}
+	
+	@RequestMapping(value = "boardWritePage.do")
+	public String boardWritePage(Locale locale, Model model) throws Exception{
+		logger.info("boardWritePage!");
+		
+		return "boardWrite";
+	}
+	
+	@RequestMapping(value = "boardInsert.do", produces="text/plain;charset=UTF-8")
+	@ResponseBody
+	public String boardWriteInsert(@ModelAttribute BoardVO param) throws Exception{
+		logger.info("boardWriteInsert!");
+		
+		System.out.println("카테고리 : " + param.getCate());
+		System.out.println("제목 : " + param.getTitle());
+		System.out.println("내용 : " + param.getContent());
+		System.out.println("작성자 : " + param.getWriter());
+		System.out.println("작성일 : " + param.getDatetime());
+		System.out.println("공개여부 : " + param.getPubpriv());
+		System.out.println("출처 : " + param.getSource());
+		
+		service.insertBoard(param);
+		
+		List<BoardVO> BoardList = service.selectBoard();
+		Gson gson = new Gson();
+		String js = gson.toJson(BoardList);
+		System.out.println("JSON >>>: " + js);
+		
+		return js;
 	}
 	
 }

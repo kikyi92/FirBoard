@@ -11,13 +11,19 @@ import com.xiness.dto.BoardVO;
 
 @Service
 public class BoardServiceImpl implements BoardService{
-@Inject
-private BoardDAO dao;
+	
+	@Inject
+	private BoardDAO dao;
+	
+	@Override
+	public List<BoardVO> selectBoard() throws Exception {
+		return dao.selectBoard();
+	}
 
-@Override
-public List<BoardVO> selectBoard() throws Exception {
-	return dao.selectBoard();
-}
-
-
+	@Override
+	public void insertBoard(BoardVO param) throws Exception {
+		dao.insertBoard(param);
+	}
+	
+	
 }
