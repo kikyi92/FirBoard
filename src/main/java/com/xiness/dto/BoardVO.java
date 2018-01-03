@@ -8,6 +8,8 @@ public class BoardVO {
 	private String writer; //작성자
 	private String datetime; //입력날짜
 	private Integer viewcnt; // 조회수
+	private String option; //옵션
+	private String pubpriv; //공개여부
 	
 	public Integer getViewcnt() {
 		return viewcnt;
@@ -15,8 +17,6 @@ public class BoardVO {
 	public void setViewcnt(Integer viewcnt) {
 		this.viewcnt = viewcnt;
 	}
-	private String option; //옵션
-	private String pubpriv; //공개여부
 	
 	public Integer getNo() {
 		return no;
