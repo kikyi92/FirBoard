@@ -49,13 +49,13 @@ public class HomeController {
 	public String boardWriteInsert(@ModelAttribute BoardVO param) throws Exception{
 		logger.info("boardWriteInsert!");
 		
-		System.out.println("Ä«Å×°í¸® : " + param.getCate());
-		System.out.println("Á¦¸ñ : " + param.getTitle());
-		System.out.println("³»¿ë : " + param.getContent());
-		System.out.println("ÀÛ¼ºÀÚ : " + param.getWriter());
-		System.out.println("ÀÛ¼ºÀÏ : " + param.getDatetime());
-		System.out.println("°ø°³¿©ºÎ : " + param.getPubpriv());
-		System.out.println("ÃâÃ³ : " + param.getSource());
+		System.out.println(" : " + param.getCate());
+		System.out.println("ï¿½ï¿½ï¿½ï¿½ : " + param.getTitle());
+		System.out.println("ï¿½ï¿½ï¿½ï¿½ : " + param.getContent());
+		System.out.println("ï¿½Û¼ï¿½ï¿½ï¿½ : " + param.getWriter());
+		System.out.println("ï¿½Û¼ï¿½ï¿½ï¿½ : " + param.getDatetime());
+		System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ : " + param.getPubpriv());
+		System.out.println("ï¿½ï¿½Ã³ : " + param.getSource());
 		
 		service.insertBoard(param);
 		
