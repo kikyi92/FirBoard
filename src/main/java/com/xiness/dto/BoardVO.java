@@ -1,15 +1,18 @@
 package com.xiness.dto;
 
 public class BoardVO {
-	private Integer no;	 //湲�踰덊샇
-	private String cate; // 遺꾨쪟
-	private String title;// �젣紐�
-	private String content; // �궡�슜
-	private String writer; //�옉�꽦�옄
-	private String datetime; //�엯�젰�궇吏�
-	private Integer viewcnt; // 議고쉶�닔
-	private String source; //�샃�뀡
-	private String pubpriv; //怨듦컻�뿬遺�
+	private Integer no;	 //疫뀐옙甕곕뜇�깈
+	private String cate; // �겫袁⑥첒
+	private String title;// 占쎌젫筌륅옙
+	private String content; // 占쎄땀占쎌뒠
+	private String writer; //占쎌삂占쎄쉐占쎌쁽
+	private String datetime; //占쎌뿯占쎌젾占쎄텊筌욑옙
+	private Integer viewcnt; // 鈺곌퀬�돳占쎈땾
+	private String source; //占쎌긿占쎈��
+	private String pubpriv; //�⑤벀而삼옙肉ч겫占�
+	private int groupno;
+	private int indent;
+	private int depth;
 	
 	public Integer getViewcnt() {
 		return viewcnt;
@@ -66,5 +69,23 @@ public class BoardVO {
 	public void setPubpriv(String pubpriv) {
 		this.pubpriv = pubpriv;
 	}
-	
+	public int getGroupno() {
+		return groupno;
 	}
+	public void setGroupno(int groupno) {
+		this.groupno = groupno;
+	}
+	public int getIndent() {
+		return indent;
+	}
+	public void setIndent(int indent) {
+		this.indent = indent;
+	}
+	public int getDepth() {
+		return depth;
+	}
+	public void setDepth(int depth) {
+		this.depth = depth;
+	}
+	
+}

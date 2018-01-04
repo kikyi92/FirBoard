@@ -133,7 +133,7 @@ $(function(){
 			                                + '<td style="text-align: center;">'+data[key].cate+'</td>'
 			                                + '<td><a href="#" onClick="clickTitle('+data[key].no+')">'+data[key].title+'</a></td>'
 			                                + '<td style="text-align: center;">'+data[key].writer+'</td>'
-			                                + '<td style="text-align: center;">'+data[key].date+'</td>'
+			                                + '<td style="text-align: center;">'+data[key].datetime+'</td>'
 			                                + '<td style="text-align: center;">'+data[key].viewcnt+'</td></tr>'
 		}
 		$('.center-block tbody').html(innerHtml);

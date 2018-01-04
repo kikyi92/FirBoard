@@ -23,4 +23,5 @@ public class BoardDAOImpl implements BoardDAO{
 	public void insertBoard(BoardVO param) throws Exception {
 		sqlSession.insert(Namespace + ".insertBoard", param);
 	}
+
 }

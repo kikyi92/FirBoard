@@ -23,13 +23,13 @@
 	      <table class="table table-bordered table-striped nanum text-center">
 	        <thead>
 	          <tr class="success">
-	            <th class=text-center width="10%">번호</th>
-	            <th class=text-center width="15%">분류</th>
-	            <th class=text-center width="15%">제목</th>
+	            <th class=text-center width="5%">번호</th>
+	            <th class=text-center width="5%">분류</th>
+	            <th class=text-center width="40%">제목</th>
 	            <!-- <th width="20%">내용</th> -->
 	            <th class=text-center width="20%">작성자</th>
 	            <th class=text-center width="20%">작성일</th>
-	            <th class=text-center width="20%">조회수</th>
+	            <th class=text-center width="10%">조회수</th>
 	            <!-- <th width="10%">옵션</th>
 	            <th width="10%">공개여부</th> -->
 	          </tr>
@@ -39,7 +39,7 @@
 	            <tr class="active">
 	              <td>${board.no}</td>
 	              <td>${board.cate}</td>
-	              <td>${board.title}</td>
+	              <td class="text-left">${board.title}</td>
 	              <%-- <td>${board.content}</td> --%>
 	              <td>${board.writer}</td>
 	              <td>${board.datetime}</td>

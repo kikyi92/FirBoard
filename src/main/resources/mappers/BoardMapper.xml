@@ -19,12 +19,16 @@
 <mapper namespace="com.xiness.mapper.BoardMapper">
    
     <select id="selectBoard" resultType="BoardVO"> 
-        SELECT * FROM boardtable
+        SELECT * FROM boardtable 
+        ORDER BY groupno DESC, depth ASC;
     </select>
     
     <insert id="insertBoard" parameterType="BoardVO">
-    	INSERT INTO boardtable(datetime, cate, source, writer, title, content, pubpriv)
-    	VALUES (#{datetime}, #{cate}, #{source}, #{writer}, #{title}, #{content}, #{pubpriv})
+    	INSERT INTO boardtable(datetime, cate, source, writer, title, content, pubpriv, groupno, indent, depth)
+    	VALUES (#{datetime}, #{cate}, #{source}, #{writer}, #{title}, #{content}, #{pubpriv}, #{broupno}, 1, 0)
+    	<selectKey keyProperty="groupno" resultType="int" order="AFTER">
+    		select max(no)+1 from boardtable
+ 	 	</selectKey>
     </insert>
     
 </mapper>

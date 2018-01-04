@@ -24,6 +24,6 @@ public class BoardServiceImpl implements BoardService{
 	public void insertBoard(BoardVO param) throws Exception {
 		dao.insertBoard(param);
 	}
-	
+
 	
 }

@@ -49,15 +49,18 @@ public class HomeController {
 	public String boardWriteInsert(@ModelAttribute BoardVO param) throws Exception{
 		logger.info("boardWriteInsert!");
 		
-		System.out.println(" : " + param.getCate());
-		System.out.println("ï¿½ï¿½ï¿½ï¿½ : " + param.getTitle());
-		System.out.println("ï¿½ï¿½ï¿½ï¿½ : " + param.getContent());
-		System.out.println("ï¿½Û¼ï¿½ï¿½ï¿½ : " + param.getWriter());
-		System.out.println("ï¿½Û¼ï¿½ï¿½ï¿½ : " + param.getDatetime());
-		System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ : " + param.getPubpriv());
-		System.out.println("ï¿½ï¿½Ã³ : " + param.getSource());
-		
+		System.out.println("Ä«Å×°í¸® : " + param.getCate());
+		System.out.println("±ÛÁ¦¸ñ : " + param.getTitle());
+		System.out.println("±Û³»¿ë : " + param.getContent());
+		System.out.println("ÀÛ¼ºÀÚ : " + param.getWriter());
+		System.out.println("ÀÛ¼ºÀÏ : " + param.getDatetime());
+		System.out.println("°ø°³¹üÀ§ : " + param.getPubpriv());
+		System.out.println("ÃâÃ³ : " + param.getSource());
+		System.out.println("±×·ì¹øÈ£ : " + param.getGroupno());
 		service.insertBoard(param);
+		
+		int no = param.getNo();
+		System.out.println("---±Û¹øÈ£ >>> : " + no);
 		
 		List<BoardVO> BoardList = service.selectBoard();
 		Gson gson = new Gson();
