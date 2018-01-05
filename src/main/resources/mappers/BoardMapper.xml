@@ -24,11 +24,43 @@
     </select>
     
     <insert id="insertBoard" parameterType="BoardVO">
+    	INSERT INTO boardtable(datetime, cate, source, writer, title, content, pubpriv, indent, depth)
+    	VALUES (#{datetime}, #{cate}, #{source}, #{writer}, #{title}, #{content}, #{pubpriv}, 0, 1)
+    	<selectKey keyProperty="no" resultType="int" order="AFTER">
+            SELECT LAST_INSERT_ID();
+        </selectKey>
+    </insert>
+    
+    <update id="updateGroupNo" parameterType="int">
+    	UPDATE boardtable SET groupno=#{no}
+		WHERE no=#{no}
+    </update>
+    
+    <select id="detailBoard" resultType="BoardVO">
+		select no, datetime, cate, source, writer, title, content, pubpriv, groupno, indent, depth
+		from boardtable where no=#{no}
+	</select>
+	
+	<delete id="boardDelete" parameterType="int">
+		DELETE FROM boardtable
+		WHERE no=#{no};
+	</delete>
+	
+	<update id="boardUpdate" parameterType="BoardVO">
+		UPDATE boardtable
+		SET WRITER=#{writer}, TITLE=#{title}, CONTENT=#{content}
+		    , CATE=#{cate}, PUBPRIV=#{pubpriv}, SOURCE=#{source}
+		WHERE NO=#{no}
+	</update>
+	
+	<select id="selectParentInfo" parameterType="int" resultType="BoardVO"> 
+        SELECT * FROM boardtable
+        WHERE no=#{parentNo}
+    </select>
+    
+    <insert id="replyInsert" parameterType="BoardVO">
     	INSERT INTO boardtable(datetime, cate, source, writer, title, content, pubpriv, groupno, indent, depth)
-    	VALUES (#{datetime}, #{cate}, #{source}, #{writer}, #{title}, #{content}, #{pubpriv}, #{broupno}, 1, 0)
-    	<selectKey keyProperty="groupno" resultType="int" order="AFTER">
-    		select max(no)+1 from boardtable
- 	 	</selectKey>
+    	VALUES (#{datetime}, #{cate}, #{source}, #{writer}, #{title}, #{content}, #{pubpriv}, #{groupno}, #{indent}, #{depth})
     </insert>
     
 </mapper>

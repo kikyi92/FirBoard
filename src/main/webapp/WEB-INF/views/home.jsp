@@ -39,13 +39,12 @@
 	            <tr class="active">
 	              <td>${board.no}</td>
 	              <td>${board.cate}</td>
-	              <td class="text-left">${board.title}</td>
-	              <%-- <td>${board.content}</td> --%>
+	              <td id="detailView" class="text-left">
+	              	<a href="#" onClick="clickTitle(${board.no})">${board.title}</a>
+	              </td>
 	              <td>${board.writer}</td>
 	              <td>${board.datetime}</td>
 	              <td>${board.viewcnt}</td>
-	              <%-- <td>${board.option}</td>
-	              <td>${board.pubpriv}</td> --%>
 	              </tr>
 	        	</c:forEach>
 	        </tbody>
@@ -55,5 +54,7 @@
 	</div>
 	
 <%@include file="/WEB-INF/views/write.jsp"%>	
+<%@include file="/WEB-INF/views/detail.jsp"%>	
+<%@include file="/WEB-INF/views/reply.jsp"%>	
 </body>
 </html>

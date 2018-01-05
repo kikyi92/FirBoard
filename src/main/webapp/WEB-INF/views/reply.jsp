@@ -5,19 +5,20 @@
 <div class="container">
 
   <!-- Modal -->
-  <div class="modal fade" id="writeModal" role="dialog">
+  <div class="modal fade" id="replyModal" role="dialog">
     <div class="modal-dialog modal-80size">
     
       <!-- Modal content-->
       <div class="modal-content modal-80size">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">글쓰기</h4>
+          <h4 class="modal-title">답글쓰기</h4>
         </div>
         <div class="modal-body">
-        	<form name="writeForm" id="writeForm">
+        	<form name="replyForm" id="replyForm">
+        		<input type="hidden" name="no" id="parentNo">	
 			    <label>작성일</label>
-			    <input type="text" class="form-control" name="datetime" id="inputDate" placeholder="작성일" >
+			    <input type="text" class="form-control" name="datetime" id="replyDate" placeholder="작성일" >
 			    <label>게시판종류</label>
 			    <select class="form-control" name="cate" id="cate" >
 				  <option>유머</option>
@@ -34,7 +35,7 @@
 			    <label>작성자</label>
 			    <input type="text" class="form-control" name="writer" id="inputName" placeholder="작성자" >
 			  	<label>제목</label>
-			  	<input type="text" class="form-control" name="title" id="inputTitle" placeholder="제목">
+			  	<input type="text" class="form-control" name="title" id="replyTitle" placeholder="제목">
 			  	<label>내용</label>
 			  	<textarea class="form-control" rows="6" placeholder="내용" name="content" id="inputContent"></textarea>
 			  	<div class="radio pull-right">
@@ -48,7 +49,7 @@
 		  	</form>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-primary" data-dismiss="modal"id="btnWrite">확인</button>
+          <button type="button" class="btn btn-primary" data-dismiss="modal"id="btnReply">확인</button>
           <button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
         </div>
       </div>
