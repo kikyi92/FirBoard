@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.xiness.dao.BoardDAO;
@@ -53,6 +54,11 @@ public class BoardServiceImpl implements BoardService{
 	@Override
 	public void replyInsert(BoardVO param) throws Exception {
 		dao.replyInsert(param);
+	}
+
+	@Override
+	public void updateDepthNo(BoardVO param) throws Exception {
+		dao.updateDepthNo(param);
 	}
 	
 }

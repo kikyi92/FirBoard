@@ -60,8 +60,13 @@
     
     <insert id="replyInsert" parameterType="BoardVO">
     	INSERT INTO boardtable(datetime, cate, source, writer, title, content, pubpriv, groupno, indent, depth)
-    	VALUES (#{datetime}, #{cate}, #{source}, #{writer}, #{title}, #{content}, #{pubpriv}, #{groupno}, #{indent}, #{depth})
+    	VALUES (#{datetime}, #{cate}, #{source}, #{writer}, #{title}, #{content}, #{pubpriv}, #{groupno}, (#{indent}+1), (#{depth}+1))
     </insert>
+    
+    <update id="updateDepthNo" parameterType="BoardVO"> 
+    	UPDATE boardtable SET depth=depth+1
+    	WHERE groupno=#{groupno} and depth>#{depth};
+    </update>
     
 </mapper>
 

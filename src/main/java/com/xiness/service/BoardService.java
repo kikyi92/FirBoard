@@ -13,5 +13,6 @@ public interface BoardService {
 	public void boardUpdate(BoardVO param) throws Exception;
 	public List<BoardVO> selectParentInfo(int no) throws Exception;
 	public void replyInsert(BoardVO param) throws Exception;
+	public void updateDepthNo(BoardVO param) throws Exception;
 	
 }

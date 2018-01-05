@@ -164,18 +164,23 @@ public class HomeController {
 	@RequestMapping(value = "replyInsert.do", produces="text/plain;charset=UTF-8")
 	@ResponseBody
 	public String replyInsert(@ModelAttribute BoardVO param) throws Exception{
-		logger.info("replyInsert!");
+		System.out.println("replyInsert() 답글입력시!");
 		
 		System.out.println("부모글번호 : " + param.getNo());
 		int parentNo = param.getNo();
 		
+		
 		// 부모글 정보 조회
 		List<BoardVO> parentInfo = service.selectParentInfo(parentNo);
+		System.out.println("답글입력시 참조할 부모정보-------------------------------------");
+		System.out.println("부모제목 >>> : " + parentInfo.get(0).getTitle());
 		System.out.println("부모no >>> : " + parentInfo.get(0).getNo());
 		System.out.println("부모groupno >>> : " + parentInfo.get(0).getGroupno());
 		System.out.println("부모indent >>> : " + parentInfo.get(0).getIndent());
 		System.out.println("부모depth >>> : " + parentInfo.get(0).getDepth());
-		System.out.println("부모제목 >>> : " + parentInfo.get(0).getTitle());
+		
+		// depth 증가
+		service.updateDepthNo(parentInfo.get(0));
 		
 		// 읽어온 답글정보
 		System.out.println("답글 카테고리 : " + param.getCate());
@@ -186,9 +191,14 @@ public class HomeController {
 		System.out.println("답글 공개범위 : " + param.getPubpriv());
 		System.out.println("답글 출처 : " + param.getSource());
 		
+		
+		System.out.println("부모groupno >>> : " + parentInfo.get(0).getGroupno());
+		System.out.println("부모indent >>> : " + parentInfo.get(0).getIndent());
+		System.out.println("부모depth >>> : " + parentInfo.get(0).getDepth());
+		
 		param.setGroupno(parentInfo.get(0).getGroupno());
-		param.setIndent(parentInfo.get(0).getIndent()+1);
-		param.setDepth(parentInfo.get(0).getDepth()+1);
+		param.setIndent(parentInfo.get(0).getIndent());
+		param.setDepth(parentInfo.get(0).getDepth());
 		
 		//답글입력
 		service.replyInsert(param);

@@ -54,5 +54,12 @@ public class BoardDAOImpl implements BoardDAO{
 	public void replyInsert(BoardVO param) throws Exception {
 		sqlSession.insert(Namespace + ".replyInsert", param);
 	}
+
+	@Override
+	public void updateDepthNo(BoardVO param) throws Exception {
+		sqlSession.update(Namespace+".updateDepthNo", param);
+	}
+	
+	
 	
 }

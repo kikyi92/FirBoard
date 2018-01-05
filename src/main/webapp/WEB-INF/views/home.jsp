@@ -23,11 +23,11 @@
 	      <table class="table table-bordered table-striped nanum text-center">
 	        <thead>
 	          <tr class="success">
-	            <th class=text-center width="5%">번호</th>
-	            <th class=text-center width="5%">분류</th>
+	            <th class=text-center width="10%">번호</th>
+	            <th class=text-center width="10%">분류</th>
 	            <th class=text-center width="40%">제목</th>
 	            <!-- <th width="20%">내용</th> -->
-	            <th class=text-center width="20%">작성자</th>
+	            <th class=text-center width="10%">작성자</th>
 	            <th class=text-center width="20%">작성일</th>
 	            <th class=text-center width="10%">조회수</th>
 	            <!-- <th width="10%">옵션</th>
@@ -42,7 +42,7 @@
 	              <td id="detailView" class="text-left">
 	              	<a href="#" onClick="clickTitle(${board.no})">${board.title}</a>
 	              </td>
-	              <td>${board.writer}</td>
+	              <td class="text-left">${board.writer}</td>
 	              <td>${board.datetime}</td>
 	              <td>${board.viewcnt}</td>
 	              </tr>
