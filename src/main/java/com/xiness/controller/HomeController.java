@@ -31,7 +31,7 @@ public class HomeController {
 
 	@RequestMapping(value = "/")
 	public String home(Locale locale, Model model) throws Exception {
-		logger.info("home!");
+		logger.info("home");
 
 		List<BoardVO> BoardList = service.selectBoard();
 		model.addAttribute("BoardList", BoardList);
