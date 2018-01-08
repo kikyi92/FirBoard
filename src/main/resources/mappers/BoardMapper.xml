@@ -17,6 +17,16 @@
 </mapper> -->
 
 <mapper namespace="com.xiness.mapper.BoardMapper">
+
+	<resultMap type="com.xiness.dto.BoardVO" id="WriteInfoResult">
+		<result column="datetime" property="datetime" />
+		<result column="cate" property="cate" />
+		<result column="source" property="source" />
+		<result column="writer" property="writer" />
+		<result column="title" property="title" />
+		<result column="content" property="content" />
+		<result column="pubpriv" property="pubpriv" />
+	</resultMap>
    
     <select id="selectBoard" resultType="BoardVO"> 
         SELECT * FROM boardtable 
@@ -67,6 +77,29 @@
     	UPDATE boardtable SET depth=depth+1
     	WHERE groupno=#{groupno} and depth>#{depth};
     </update>
+    
+    <select id="searchBoard" resultType="BoardVO" parameterType="string">
+		select no, datetime, cate, source, writer, title, content, pubpriv, viewcnt
+		from boardtable
+		where title like concat('%',#{keyword},'%')
+	</select>
+	
+	<!-- 페이징 및 전체 레코드 갯수 조회 쿼리 -->
+	<select id="writeGetCount" resultType="int">
+		select count(*) from
+		boardtable;
+	</select>
+	<!-- 게시글 목록을 조회하기 위한 쿼리(일반, 공지사항) -->
+	<select id="writeList" resultMap="WriteInfoResult"
+		parameterType="hashmap">
+		select * from boardtable ORDER BY no DESC LIMIT #{offset},
+		#{noOfRecords}   <!-- offset위치부터 noOfRecords 수 만큼 select 하라! -->
+	</select>
+
+	<select id="writeInfoList" resultMap="WriteInfoResult">
+		select * from boardtable
+		where info = 1 ORDER BY no DESC
+	</select>
     
 </mapper>
 

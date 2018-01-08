@@ -1,9 +1,11 @@
 package com.xiness.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,12 +18,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.google.gson.Gson;
 import com.xiness.dto.BoardVO;
+import com.xiness.paging.Paging;
 import com.xiness.service.BoardService;
 
-// 답변형진행중
-/**
- * Handles requests for the application home page.
- */
 @Controller
 public class HomeController {
 
@@ -29,23 +28,42 @@ public class HomeController {
 	@Inject
 	private BoardService service;
 
+	// 메인페이지
 	@RequestMapping(value = "/")
-	public String home(Locale locale, Model model) throws Exception {
+	public String home(Locale locale, Model model, HttpServletRequest req) throws Exception {
 		logger.info("home");
 
-		List<BoardVO> BoardList = service.selectBoard();
-		model.addAttribute("BoardList", BoardList);
+		int currentPageNo = 1; //현재페이지
+		int maxPost = 10;	 // 하나의 페이지에 표시할 게시물 갯수
+		
+		if(req.getParameter("pages") != null) //게시물이 1개도없으면(=페이지가 생성이 안되었으면)이 아니라면 == 페이징이 생성되었다면	 													 
+			currentPageNo = Integer.parseInt(req.getParameter("pages"));//pages에있는 string 타입 변수를 int형으로 바꾸어서 currentPageNo에 담는다.
+		
+		Paging paging = new Paging(currentPageNo, maxPost);  //Paging.java에있는 currentPAgeNo, maxPost를 paging변수에 담는다.
+		
+		int offset = (paging.getCurrentPageNo() -1) * paging.getmaxPost(); // query.xml에서 select를 할때 사용하기위한 offset 변수의 선언. 
+		// 현재 3페이지 이고, 그 페이지에 게시물이 10개가 있다면 offset값은 (3-1) * 10 = 20이 된다.
+		/*//test
+		//중요공지사항을 사용하기 위한 것
+		ArrayList<BoardVO> infolist = new ArrayList<BoardVO>();     	
+		infolist = (ArrayList<BoardVO>) service.writeInfoList();
+		//test
+*/		ArrayList<BoardVO> page = new ArrayList<BoardVO>(); // BoardVO 에 있는 변수들을 ArrayList 타입의 배열로 둔 다음 이를 page라는 변수에 담는다.
+		page = (ArrayList<BoardVO>) service.writeList(offset, paging.getmaxPost()); 
+		//writeService.java에 있는 writeList 함수를 이용하여 offset값과 maxPost값을 ArrayList 타입의 배열로 담고, 이 배열 자체를 page 변수에 담는다.
+		paging.setNumberOfRecords(service.writeGetCount()); // 페이지를 표시하기 위해 전체 게시물 수를 파악하기 위한것
+		paging.makePaging(); 
 
+		//List<BoardVO> BoardList = service.selectBoard(); writeList
+		//model.addAttribute("BoardList",BoardList); //이부분이 예전에 쓰던거고
+		//model.addAttribute("infolist",infolist); //중요공지사항을 사용하기 위한것
+		model.addAttribute("page", page); // 여기가 이제 페이징처리하면서 리스트뿌려주는거거든요 근데 이걸로하면 
+		model.addAttribute("paging", paging);
+		
 		return "home";
 	}
 
-	@RequestMapping(value = "boardWritePage.do")
-	public String boardWritePage(Locale locale, Model model) throws Exception {
-		logger.info("boardWritePage!");
-
-		return "boardWrite";
-	}
-
+	// 글입력
 	@RequestMapping(value = "boardInsert.do", produces="text/plain;charset=UTF-8")
 	@ResponseBody
 	public String boardWriteInsert(@ModelAttribute BoardVO param) throws Exception{
@@ -216,5 +234,22 @@ public class HomeController {
 		
 		return js;
 	}
+	
+	// 검색 
+	@RequestMapping(value = "searchAjax.do", produces = "application/json; charset=utf-8")
+	@ResponseBody
+	public String search(Locale locale, Model model,@RequestParam(value="keyword") String keyword) throws Exception{
+		logger.info("search...");
+		
+		System.out.println("keywordVal >>> : " + keyword);
+			
+		List<BoardVO> searchBoardList = service.searchBoard(keyword);
+			
+		Gson gson = new Gson();
+		String json = gson.toJson(searchBoardList);
+		System.out.println("json : >>>" + json);
+		return json;
+	}
+	
 
 }

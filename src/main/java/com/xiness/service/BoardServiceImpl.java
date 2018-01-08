@@ -60,5 +60,27 @@ public class BoardServiceImpl implements BoardService{
 	public void updateDepthNo(BoardVO param) throws Exception {
 		dao.updateDepthNo(param);
 	}
+
+	// 검색
+	@Override
+	public List<BoardVO> searchBoard(String keyword) throws Exception {
+		return dao.searchBoard(keyword);
+	}
+
+	@Override
+	public List<BoardVO> writeList(int offset, int noOfRecords) throws Exception {
+		return dao.writeList(offset, noOfRecords);
+	}
+
+	@Override
+	public int writeGetCount() throws Exception {
+		return dao.writeGetCount();
+	}
+
+	//목록표시
+	@Override
+	public List<BoardVO> writeInfoList() throws Exception {
+		return null;
+	}
 	
 }

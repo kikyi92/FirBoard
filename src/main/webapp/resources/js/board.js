@@ -62,6 +62,32 @@ $(function(){
 	        });
 		});
 		
+		// 검색 버튼 클릭시
+		$("#searchBtn").click(function(){
+			alert('searchBtn 클릭!');
+			var title = $('#keyword').val();
+			var content = $('#keyword').val();
+			alert(title);
+			alert(content);
+			
+			var allData={"keyword":title};
+			var allData={"keyword":content};
+			//test
+			$.ajax({
+	            type : 'post',
+	            url : 'searchAjax.do',
+	            data : allData,
+	            dataType : 'json',
+	            success : function(data){
+	            	alert('success');
+	            	refreshList(data);
+	            },
+	            error: function(xhr, status, error){
+	                alert('error >>> : ' + error);
+	            }
+	        });
+		});
+		
 	});
 
 	//현재시간 구하기 YYYY-MM-dd hh:mm:ss

@@ -1,4 +1,6 @@
 package com.xiness.dao;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -13,7 +15,8 @@ public class BoardDAOImpl implements BoardDAO{
 	@Inject
 	private SqlSession sqlSession;
 	private static final String Namespace = "com.xiness.mapper.BoardMapper";
-
+	private Object noOfRecords;
+	
 	@Override
 	public List<BoardVO> selectBoard() throws Exception {
 		return sqlSession.selectList(Namespace+".selectBoard");
@@ -59,7 +62,41 @@ public class BoardDAOImpl implements BoardDAO{
 	public void updateDepthNo(BoardVO param) throws Exception {
 		sqlSession.update(Namespace+".updateDepthNo", param);
 	}
-	
-	
+
+	// 검색 결과 
+	@Override
+	public List<BoardVO> searchBoard(String keyword) throws Exception {
+		return sqlSession.selectList(Namespace+".searchBoard", keyword);
+	}
+
+	//목록표시
+	@Override
+	public List<BoardVO> writeInfoList() throws Exception {
+		return sqlSession.selectList("writeInfoList");
+	}
+
+	//게시물 목록표시(페이징)
+	@Override
+	public List<BoardVO> writeList(int offset, int noOfRecords) throws Exception {
+			
+		List<BoardVO> writeList = new ArrayList<BoardVO>(); 
+		
+		HashMap<String, Object> params = new HashMap<String, Object>(); 
+			
+		params.put("offset", offset); 
+		params.put("noOfRecords", noOfRecords); 
+		
+		writeList = sqlSession.selectList("writeList", params); 
+		this.noOfRecords = sqlSession.selectOne("writeGetCount");
+		
+		//return sqlSession.writeList(Namespace+".writeList");
+		return writeList;
+	}
+
+	//페이징
+	@Override
+	public int writeGetCount() throws Exception {
+		return sqlSession.selectOne("writeGetCount");
+	}
 	
 }
