@@ -102,22 +102,20 @@
 		</div>
 
 		<!-- Search Start -->
-		<center>
-			<div id="searchForm">
-				<script>
-					function goPage(pages, lines) {
-						location.href = '?' + "pages=" + pages;
-					}
-				</script>
-				<form name="serach" method="post">
-					<select name="searchOption">
-						<option value="title" id="title">제목</option>
-					</select> 
-					<input type="text" id="keyword" name="keyword" /> 
-					<input type="button" id="searchBtn" value="검색"/>
-				</form>
-			</div>
-		</center>
+		<div id="searchForm" align="center">
+			<script>
+				function goPage(pages, lines) {
+					location.href = '?' + "pages=" + pages;
+				}
+			</script>
+			<form name="serach" method="post">
+				<select name="searchOption">
+					<option value="title" id="title">제목</option>
+				</select> 
+				<input type="text" id="keyword" name="keyword" /> 
+				<input type="button" id="searchBtn" value="검색"/>
+			</form>
+		</div>
 		<!-- Search End -->
 	</div>
 	
