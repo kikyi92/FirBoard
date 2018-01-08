@@ -84,10 +84,21 @@ public class HomeController {
 		int no = param.getNo();
 		service.updateGroupNo(no);
 		
-		List<BoardVO> BoardList = service.selectBoard();
+//	    페이징처리 적용전	
+//		List<BoardVO> BoardList = service.selectBoard();
+//		Gson gson = new Gson();
+//		String js = gson.toJson(BoardList);
+//		System.out.println("JSON >>>: " + js);
+		
+		//페이징처리 적용
+		int currentPageNo = 1; //현재페이지
+		int maxPost = 10;	 // 하나의 페이지에 표시할 게시물 갯수
+		Paging paging = new Paging(currentPageNo, maxPost);  //Paging.java에있는 currentPAgeNo, maxPost를 paging변수에 담는다.
+		int offset = (paging.getCurrentPageNo() -1) * paging.getmaxPost(); // query.xml에서 select를 할때 사용하기위한 offset 변수의 선언. 
+		ArrayList<BoardVO> page = new ArrayList<BoardVO>(); // BoardVO 에 있는 변수들을 ArrayList 타입의 배열로 둔 다음 이를 page라는 변수에 담는다.
+		page = (ArrayList<BoardVO>) service.writeList(offset, paging.getmaxPost());
 		Gson gson = new Gson();
-		String js = gson.toJson(BoardList);
-		System.out.println("JSON >>>: " + js);
+		String js = gson.toJson(page);
 		
 		return js;
 	}
@@ -117,10 +128,21 @@ public class HomeController {
 		System.out.println("지울 글번호 : " + no);
 		service.boardDelete(no);
 		
-		List<BoardVO> bList = service.selectBoard();
+//		페이징처리 적용전
+//		List<BoardVO> bList = service.selectBoard();
+//		Gson gson = new Gson();
+//		String js = gson.toJson(bList);
+//		System.out.println("JSON >>>: " + js);
+		
+		//페이징처리 적용
+		int currentPageNo = 1; //현재페이지
+		int maxPost = 10;	 // 하나의 페이지에 표시할 게시물 갯수
+		Paging paging = new Paging(currentPageNo, maxPost);  //Paging.java에있는 currentPAgeNo, maxPost를 paging변수에 담는다.
+		int offset = (paging.getCurrentPageNo() -1) * paging.getmaxPost(); // query.xml에서 select를 할때 사용하기위한 offset 변수의 선언. 
+		ArrayList<BoardVO> page = new ArrayList<BoardVO>(); // BoardVO 에 있는 변수들을 ArrayList 타입의 배열로 둔 다음 이를 page라는 변수에 담는다.
+		page = (ArrayList<BoardVO>) service.writeList(offset, paging.getmaxPost());
 		Gson gson = new Gson();
-		String js = gson.toJson(bList);
-		System.out.println("JSON >>>: " + js);
+		String js = gson.toJson(page);
 		
 		return js;
 	}
@@ -140,11 +162,22 @@ public class HomeController {
 		System.out.println("출처 : " + param.getSource());
 		
 		service.boardUpdate(param);
+	
+//		페이징처리 적용전	
+//		List<BoardVO> bList = service.selectBoard();
+//		Gson gson = new Gson();
+//		String js = gson.toJson(bList);
+//		System.out.println("JSON >>>: " + js);
 		
-		List<BoardVO> bList = service.selectBoard();
+		//페이징처리 적용
+		int currentPageNo = 1; //현재페이지
+		int maxPost = 10;	 // 하나의 페이지에 표시할 게시물 갯수
+		Paging paging = new Paging(currentPageNo, maxPost);  //Paging.java에있는 currentPAgeNo, maxPost를 paging변수에 담는다.
+		int offset = (paging.getCurrentPageNo() -1) * paging.getmaxPost(); // query.xml에서 select를 할때 사용하기위한 offset 변수의 선언. 
+		ArrayList<BoardVO> page = new ArrayList<BoardVO>(); // BoardVO 에 있는 변수들을 ArrayList 타입의 배열로 둔 다음 이를 page라는 변수에 담는다.
+		page = (ArrayList<BoardVO>) service.writeList(offset, paging.getmaxPost());
 		Gson gson = new Gson();
-		String js = gson.toJson(bList);
-		System.out.println("JSON >>>: " + js);
+		String js = gson.toJson(page);
 		
 		return js;
 	}
@@ -226,11 +259,23 @@ public class HomeController {
 //		System.out.println("글번호 >>> : " + param.getNo());
 //		int no = param.getNo();
 //		service.updateGroupNo(no);
-//		
-		List<BoardVO> BoardList = service.selectBoard();
+//
+		
+//		페이징처리 적용전
+//		List<BoardVO> BoardList = service.selectBoard();
+//		Gson gson = new Gson();
+//		String js = gson.toJson(BoardList);
+//		System.out.println("JSON >>>: " + js);
+		
+		//페이징처리 적용
+		int currentPageNo = 1; //현재페이지
+		int maxPost = 10;	 // 하나의 페이지에 표시할 게시물 갯수
+		Paging paging = new Paging(currentPageNo, maxPost);  //Paging.java에있는 currentPAgeNo, maxPost를 paging변수에 담는다.
+		int offset = (paging.getCurrentPageNo() -1) * paging.getmaxPost(); // query.xml에서 select를 할때 사용하기위한 offset 변수의 선언. 
+		ArrayList<BoardVO> page = new ArrayList<BoardVO>(); // BoardVO 에 있는 변수들을 ArrayList 타입의 배열로 둔 다음 이를 page라는 변수에 담는다.
+		page = (ArrayList<BoardVO>) service.writeList(offset, paging.getmaxPost());
 		Gson gson = new Gson();
-		String js = gson.toJson(BoardList);
-		System.out.println("JSON >>>: " + js);
+		String js = gson.toJson(page);
 		
 		return js;
 	}

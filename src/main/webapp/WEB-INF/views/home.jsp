@@ -40,7 +40,7 @@
 						<td>${board.no}</td>
 						<td>${board.cate}</td>
 						<td id="detailView" class="text-left"><a href="javascript:clickTitle(${board.no})">${board.title}</a></td>
-						<td>${board.writer}</td>
+						<td class="text-left">${board.writer}</td>
 						<td>${board.datetime}</td>
 						<td>${board.viewcnt}</td>
 					</tr>
@@ -95,10 +95,9 @@
 					</div>
 				</c:when>
 			</c:choose>
+			<button type="button" class="btn btn-lg btn-primary pull-right" id="writeBtn">글쓰기</button>
 			<!-- Paging End -->
 		</div>
-		<button type="button" class="btn btn-lg btn-primary pull-right"
-			id="writeBtn">글쓰기</button>
 
 		<!-- Search Start -->
 		<center>
