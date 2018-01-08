@@ -92,8 +92,8 @@
 	<!-- 게시글 목록을 조회하기 위한 쿼리(일반, 공지사항) -->
 	<select id="writeList" resultMap="WriteInfoResult"
 		parameterType="hashmap">
-		select * from boardtable ORDER BY no DESC LIMIT #{offset},
-		#{noOfRecords}   <!-- offset위치부터 noOfRecords 수 만큼 select 하라! -->
+		select * from boardtable 
+		ORDER BY groupno DESC, depth ASC LIMIT #{offset},#{noOfRecords}   <!-- offset위치부터 noOfRecords 수 만큼 select 하라! -->
 	</select>
 
 	<select id="writeInfoList" resultMap="WriteInfoResult">

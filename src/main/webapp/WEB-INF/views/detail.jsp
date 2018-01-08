@@ -16,39 +16,27 @@
 				</div>
 				<div class="modal-body">
 					<form name="detailForm" id="detailForm">
-						<tr class="active">
-							<%-- <table>
-								<c:forEach items="${datailBoardList}" var="board">
-								<tr><td>${board.datetime}</td>
-								<td>${board.cate}</td>
-								<td>${board.source}</td>
-								<td>${board.writer}</td>
-								<td>${board.title}</td>
-								<td>${board.content}</td>
-								<td>${board.pubpriv}</td></tr>
-								</c:forEach>
-							</table> --%> 
-				<input type="hidden" name="no" id="contentNo">							
-				<label>작성일</label>
-			    <input type="text" class="form-control" name="datetime" id="inputDatetime" >
-			    
-			    <label>게시판종류</label>
-			    <input type="text" class="form-control" name="cate" id="inputCate"  >
-				
-				<label>출처</label><br>
-				<input type="text" class="form-control" name="source" id="inputSource"  >
-			    
-			    <label>작성자</label>
-			    <input type="text" class="form-control" name="writer" id="inputWriter"  >
-			  	
-			  	<label>제목</label>
-			  	<input type="text" class="form-control" name="title" id="Title"  >
-			  	
-			  	<label>내용</label>
-			  	<textarea class="form-control" rows="6" name="content" id="Content"></textarea>
-			  	
-			  	<label>공개여부</label>
-			  	<input type="text" class="form-control" name="pubpriv" id="inputPubpriv"> 
+						<input type="hidden" name="no" id="contentNo">							
+						<label>작성일</label>
+					    <input type="text" class="form-control" name="datetime" id="inputDatetime" >
+					    
+					    <label>게시판종류</label>
+					    <input type="text" class="form-control" name="cate" id="inputCate"  >
+						
+						<label>출처</label><br>
+						<input type="text" class="form-control" name="source" id="inputSource"  >
+					    
+					    <label>작성자</label>
+					    <input type="text" class="form-control" name="writer" id="inputWriter"  >
+					  	
+					  	<label>제목</label>
+					  	<input type="text" class="form-control" name="title" id="Title"  >
+					  	
+					  	<label>내용</label>
+					  	<textarea class="form-control" rows="6" name="content" id="Content"></textarea>
+					  	
+					  	<label>공개여부</label>
+					  	<input type="text" class="form-control" name="pubpriv" id="inputPubpriv"> 
 					</form>
 				</div>
 				<div class="modal-footer">

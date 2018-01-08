@@ -39,7 +39,7 @@
 					<tr class="active">
 						<td>${board.no}</td>
 						<td>${board.cate}</td>
-						<td id="detailView"><a href="javascript:clickTitle(${board.no})">${board.title}</a></td>
+						<td id="detailView" class="text-left"><a href="javascript:clickTitle(${board.no})">${board.title}</a></td>
 						<td>${board.writer}</td>
 						<td>${board.datetime}</td>
 						<td>${board.viewcnt}</td>
