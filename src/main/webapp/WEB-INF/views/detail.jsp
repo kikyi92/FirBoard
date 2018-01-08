@@ -12,7 +12,7 @@
 			<div class="modal-content modal-80size">
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal">&times;</button>
-					<h4 class="modal-title">상세보기11111</h4>
+					<h4 class="modal-title">상세보기</h4>
 				</div>
 				<div class="modal-body">
 					<form name="detailForm" id="detailForm">
