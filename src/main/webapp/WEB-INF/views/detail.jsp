@@ -18,7 +18,7 @@
 					<form name="detailForm" id="detailForm">
 						<input type="hidden" name="no" id="contentNo">							
 						<label>작성일</label>
-					    <input type="text" class="form-control" name="datetime" id="inputDatetime" readonly="readonly">
+					    <input type="text" class="form-control" name="datetime" id="inputDatetime">
 					    
 					    <label>게시판종류</label>
 					    <input type="text" class="form-control" name="cate" id="inputCate"  >
